@@ -1,29 +1,14 @@
-const webpack = require('webpack')
-const path    = require('path')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 process.env.NODE_ENV = 'production'
 
 module.exports = {
     mode: 'production',
-    target: 'web',
-    devtool: 'cheap-module-source-map',
-    entry: './src/index',
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        historyApiFallback: true,
-        allowedHosts: 'all',
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        https: false,
-        liveReload: true
-    },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: "./src/index.html",
+            filename: "./index.html"
         })
     ],
     module: {
@@ -32,6 +17,14 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: path.resolve(__dirname, 'node_modules'),
                 use: ['babel-loader']
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
             },
             {
                 test: /(\.css)$/,
