@@ -17,7 +17,7 @@ const Header = () => {
                     <div className="row">
                         <div className="col-sm-8 col-md-7 py-4">
                             <h4 className="text-white">About</h4>
-                            <p className="text-muted">Like AirDna but TuroDna. Churro could give insight to investors when determining whether or not to become a turo host.</p>
+                            <p className="text-muted">Like AirDna but TuroDna. TuroDna could give insight to investors when determining whether or not to become a turo host.</p>
                         </div>
                         <div className="col-sm-4 offset-md-1 py-4">
                             <h4 className="text-white">Contact</h4>
