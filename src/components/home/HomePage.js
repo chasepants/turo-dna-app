@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import axios from 'axios'
 
 function HomePage(){
-    const TURO_SERVER_URL = process.env.TURO_SERVER_URL;
     let [rate, setRate] = useState("")
     let [make, setMake] = useState("")
     let [city, setCity] = useState("")
@@ -13,7 +12,7 @@ function HomePage(){
 
     const search = async () => {
         try {
-            const response = await axios.get(`${TURO_SERVER_URL}/stats/${city}/${state}`);
+            const response = await axios.get(`https://turo-dna-server.herokuapp.com/stats/${city}/${state}`);
             console.log(response.data)
             setRevenue(response.data.revenue)
             setRate(response.data.rate)
