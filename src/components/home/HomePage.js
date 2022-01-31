@@ -9,6 +9,8 @@ function HomePage(){
     let [state, setState] = useState("")
     let [revenue, setRevenue] = useState("")
     let [occupancy, setOccupancy] = useState("")
+    let [show_filters, setShowFilters] = useState(false)
+    let [filter_row_classes, setFilterRowClasses] = useState('d-none')
 
     const search = async () => {
         try {
@@ -22,31 +24,44 @@ function HomePage(){
         }
     }
 
+    const toggleFilters = () => {
+        let filter_classes = !show_filters ? 'row' : 'd-none';
+        setFilterRowClasses(filter_classes);
+        setShowFilters(!show_filters)
+    }
+
     return (
         <div>
             <main>
                 <section className="py-5 text-center container">
-                    <div className="row py-lg-5">
+                    <div className="row pt-lg-5">
                         <div className="col-lg-6 col-md-8 mx-auto">
-                        <h1 className="fw-light">Turo DNA</h1>
-                        <p className="lead text-muted"></p>
-                        <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="City" aria-label="city" onChange={e => setCity(e.target.value)}/>
-                            <input type="text" className="form-control" placeholder="State" aria-label="state" onChange={e => setState(e.target.value)}/>
-                            {/* <input type="text" className="form-control" placeholder="Make" aria-label="make" onChange={e => setMake(e.target.value)}/>
-                            <input type="text" className="form-control" placeholder="Model" aria-label="model" onChange={e => setModel(e.target.value)}/> */}
-
-                            <div className="input-group-append">
-                                <button className="btn btn-outline-primary" type="button" onClick={()=>{search()}}>Search</button>
+                            <h1 className="fw-light">Turo DNA</h1>
+                            <p className="lead text-muted"></p>
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control" placeholder="City" aria-label="city" onChange={e => setCity(e.target.value)}/>
+                                <input type="text" className="form-control" placeholder="State" aria-label="state" onChange={e => setState(e.target.value)}/>
+                                <button onClick={toggleFilters} class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">more filters</button>
                             </div>
                         </div>
+                    </div>
+                    <div className={filter_row_classes}>
+                        <div className="col-lg-6 col-md-8 mx-auto">
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control" placeholder="Make" aria-label="make" onChange={e => setMake(e.target.value)}/>
+                                <input type="text" className="form-control" placeholder="Model" aria-label="model" onChange={e => setModel(e.target.value)}/>    
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-6 col-md-8 offset-lg-3 offset-md-3 mx-auto align-items-center">
+                            <button className="btn btn-outline-primary" type="button" onClick={()=>{search()}}>Search</button>
                         </div>
                     </div>
                 </section>
 
                 <div className="album py-5 bg-light">
                     <div className="container">
-
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             <div className="col">
                                 <div className="card shadow-sm">
