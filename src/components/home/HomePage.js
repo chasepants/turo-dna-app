@@ -12,7 +12,7 @@ function HomePage(){
 
     const search = async () => {
         try {
-            const response = await axios.get(`https://turo-dna-server.herokuapp.com/stats/Provo/Utah`);
+            const response = await axios.get(`https://turo-dna-server.herokuapp.com/stats/${city}/${state}`);
             console.log(response.data)
             setRevenue(response.data.revenue)
             setRate(response.data.rate)
